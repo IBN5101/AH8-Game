@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameEnd : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class GameEnd : MonoBehaviour
 
     private float timer;
     private float timerInterval = 0.02f;
+    private float timerFinal = 2f;
 
     private int iteration = 0;
 
@@ -15,9 +18,9 @@ public class GameEnd : MonoBehaviour
 
     private void Update()
     {
+        timer += Time.deltaTime;
         if (execute)
         {
-            timer += Time.deltaTime;
             while (timer > timerInterval)
             {
                 timer -= timerInterval;
@@ -26,10 +29,15 @@ public class GameEnd : MonoBehaviour
                 iteration++;
 
                 if (iteration >= squares.Count)
-                {
-                    Debug.Log("COMPLETE!");
                     execute = false;
-                }
+            }
+        }
+        else
+        {
+            if (timer > timerFinal)
+            {
+                // Reload the current scene
+                SceneManager.LoadScene("Main");
             }
         }
         

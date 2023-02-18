@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class LevelController : MonoBehaviour
 {
     public static LevelController Instance;
+
+    public event EventHandler<int> OnLevelChanged;
 
     private void Awake()
     {
@@ -40,18 +43,28 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
-        virtualCamera1.m_Priority = 10;
-
         goal2.SetActive(false);
         goal3.SetActive(false);
         goal4.SetActive(false);
         goal5.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
     public void LevelCleared(int level)
     {
+        OnLevelChanged?.Invoke(this, level);
         switch (level)
         {
+            case 0:
+                virtualCamera1.m_Priority = 1;
+                break;
             case 1:
                 level1Wall.SetActive(false);
                 goal2.SetActive(true);
