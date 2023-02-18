@@ -54,4 +54,9 @@ public class Player : MonoBehaviour
             jumpAllowed = true;
         }
     }
+
+    public void AddForce(Vector2 direction, float forceMulti)
+    {
+        rigidbody2d.AddForce(direction * forceMulti, ForceMode2D.Impulse);
+    }
 }
