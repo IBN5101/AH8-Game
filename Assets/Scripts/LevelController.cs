@@ -23,6 +23,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCamera1;
     [SerializeField] private CinemachineVirtualCamera virtualCamera2;
     [SerializeField] private CinemachineVirtualCamera virtualCamera3;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera4;
     //[SerializeField] private Transform cameraPosition1;
     //[SerializeField] private Transform cameraPosition2;
     //[SerializeField] private Transform cameraPosition3;
@@ -31,6 +32,9 @@ public class LevelController : MonoBehaviour
     [SerializeField] private GameObject goal3;
     [SerializeField] private GameObject goal4;
     [SerializeField] private GameObject goal5;
+    [Header("Scene objects")]
+    [SerializeField] private GameEnd gameEnd;
+    [SerializeField] private Player player;
     [Header("GameObjects")]
     [SerializeField] public Transform completedGoal;
 
@@ -65,6 +69,12 @@ public class LevelController : MonoBehaviour
                 level4Wall.SetActive(false);
                 goal5.SetActive(true);
                 virtualCamera3.m_Priority = 12;
+                break;
+            case 5:
+                // Game COMPLETE
+                virtualCamera4.m_Priority = 13;
+                gameEnd.gameObject.SetActive(true);
+                Destroy(player.gameObject);
                 break;
             default:
                 Debug.Log("Error, no such level.");

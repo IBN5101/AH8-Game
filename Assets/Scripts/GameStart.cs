@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class GameStart : MonoBehaviour
 {
-    [SerializeField] private GameObject startCage;
-
     private float timer = 0f;
-    private float timerMax = 1.5f;
+    private float timerMax = 3f;
 
     private void Update()
     {
         timer += Time.deltaTime;
         if (timer > timerMax)
         {
-            Activate();
+            Destroy(gameObject);
         }
-    }
-
-    private void Activate()
-    {
-        Destroy(startCage);
-        Destroy(gameObject);
     }
 }
