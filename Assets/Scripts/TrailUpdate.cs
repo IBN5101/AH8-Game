@@ -32,7 +32,7 @@ public class TrailUpdate : MonoBehaviour
 
     private void LevelController_OnLevelChanged(object sender, int e)
     {
-        DisableAllTrails();
+        //DisableAllTrails();
         switch (e)
         {
             case 0:

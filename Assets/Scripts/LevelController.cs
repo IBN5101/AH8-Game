@@ -40,6 +40,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] private Player player;
     [Header("GameObjects")]
     [SerializeField] public Transform completedGoal;
+    [SerializeField] public Transform goalParticles;
 
     private void Start()
     {
@@ -67,19 +68,23 @@ public class LevelController : MonoBehaviour
                 break;
             case 1:
                 level1Wall.SetActive(false);
+                Instantiate(goalParticles, goal2.transform.position, Quaternion.identity);
                 goal2.SetActive(true);
                 virtualCamera2.m_Priority = 11;
                 break;
             case 2:
                 level2Wall.SetActive(false);
+                Instantiate(goalParticles, goal3.transform.position, Quaternion.identity);
                 goal3.SetActive(true);
                 break;
             case 3:
                 level3Wall.SetActive(false);
+                Instantiate(goalParticles, goal4.transform.position, Quaternion.identity);
                 goal4.SetActive(true);
                 break;
             case 4:
                 level4Wall.SetActive(false);
+                Instantiate(goalParticles, goal5.transform.position, Quaternion.identity);
                 goal5.SetActive(true);
                 virtualCamera3.m_Priority = 12;
                 break;
